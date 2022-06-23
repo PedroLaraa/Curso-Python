@@ -1,4 +1,3 @@
-
 def jogar_forca():
 
     print('***************************')
@@ -41,7 +40,6 @@ def jogar_forca():
                 print('***************************')
                 print('Você perdeu!')
                 print('A palavra secreta era: {}'.format(palavra_secreta))
-
 
 if(__name__ == '__main__'):
     jogar_forca()
