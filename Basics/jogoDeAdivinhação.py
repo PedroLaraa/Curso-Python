@@ -1,39 +1,72 @@
 # Jogo De Adivinhação:
 
-print('*********************************')
-print('Bem vindo ao jogo da adivinhação!')
-print('*********************************')
+import random
 
-chances = 3
+def jogar_adivinhacao():
 
-numero_secreto = 42
+    print('*********************************')
+    print('Bem vindo ao jogo da adivinhação!')
+    print('*********************************')
 
-while(chances > 0):
+    print('(1) Fácil | (2) Médio | (3) Difícil' )
 
-    chute_str = input('Digite um número: ')
+    chances = 0
 
-    chute = int(chute_str)
+    pontos = 10
 
-    acertou = chute == numero_secreto
+    dificuldade = int(input('Nível de dificuldade: '))
 
-    maior = chute > numero_secreto
-
-    menor = chute < numero_secreto
-
-    if(acertou):
-        print('Você acertou! Parabéns, ganhou o jogo!')
-        break
+    if(dificuldade == 1):
+        chances = 5
+    elif(dificuldade == 2):
+        chances = 3
+    elif(dificuldade == 3):
+        chances = 1
     else:
-        if(maior):
-            print('Você errou! Seu chute foi maior que o número')
-            chances -= 1
-            print('Você tem {} chances'.format(chances))
-        elif(menor):
-            print('Você errou! Seu chute foi menor que o número')
-            chances -= 1
-            print('Você tem {} chances'.format(chances))
-        elif(chances == 0):
-            print('Você perdeu!')
+        print('Digite uma opção válida!')
+        dificuldade = int(input('Nível de dificuldade: '))
+
+    numero_secreto = int(random.randrange(1, 11)) # Gera um número entre 1 e 10
+
+    for rodada in range(1, chances + 1):
+
+        chute_str = input('Digite um número entre 0 e 10: ')
+
+        chute = int(chute_str)
+
+        acertou = chute == numero_secreto
+
+        maior = chute > numero_secreto
+
+        menor = chute < numero_secreto
+
+        pontos_perdidos = chances
+
+        if(acertou):
+            print('Você acertou! Parabéns, ganhou o jogo!')
+            print('Total de pontos: {}'.format(pontos))
+            print('*********************************')
+            break
+        else:
+            if(chances == 1):
+                print('Você perdeu! O número era: {}'.format(numero_secreto))
+                print('*********************************')
+                break
+            elif(menor):
+                print('Você errou! Seu chute foi menor que o número')
+                pontos = pontos - pontos_perdidos
+                chances -= 1
+                print('Você tem {} chances'.format(chances))
+                print('*********************************')
+            elif(maior):
+                print('Você errou! Seu chute foi maior que o número')
+                pontos = pontos - pontos_perdidos
+                chances -= 1
+                print('Você tem {} chances'.format(chances))
+                print('*********************************')
+
+if(__name__ == '__main__'):
+    jogar_adivinhacao()
 
 # Correção de erros propostos pelo professor:
 
