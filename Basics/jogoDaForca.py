@@ -14,6 +14,10 @@ def jogar_forca():
 
     tentativas_de_letras = letras_acertadas.__len__()
 
+    arquivo = open('palavras.txt', 'r')
+
+    arquivo.read()
+
     while(not enforcado and not acertou):
         print(letras_acertadas)
         chute = input('Qual letra você deseja chutar: ')
