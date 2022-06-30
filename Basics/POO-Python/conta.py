@@ -14,10 +14,17 @@ class Conta:
     def set_depositar(self, valor):
         self.__saldo += valor
         self.extrato
+
+    def __pode_sacar(self, valor_a_sacar):
+        return valor_a_sacar <= (self.__saldo + self.__limite)
     
     def set_sacar(self, valor):
-        self.__saldo -= valor
-        self.extrato
+        if(self.__pode_sacar(valor)):
+            self.__saldo -= valor
+            self.extrato
+        else:
+            print('Saldo insuficiente')
+            self.extrato
 
     def set_transferir(self, valor, destino):
         self.set_sacar(valor)
@@ -32,13 +39,15 @@ class Conta:
     def limite(self, valor):
         self.__limite = valor
         print('Novo limite: {}'.format(self.__limite))
+    
+    @staticmethod
+    def codigo_banco():
+        print('001')
 
 contaPedro = Conta(321, 'Pedro', 0, 1600)
 
-contaMaria = Conta(123, 'Maria', 0, 1000)
-
 contaPedro.set_depositar(200)
 
-contaPedro.set_transferir(150, contaMaria)
+contaPedro.set_sacar(100)
 
-contaPedro.limite = 2000
+Conta.codigo_banco()
