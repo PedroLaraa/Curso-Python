@@ -1,48 +1,60 @@
 
-class Filme: 
+class Programa:
+    def __init__(self, nome, ano):
+        self._nome = nome.title()
+        self._ano = ano
+        self._likes = 0
 
+    @property
+    def dados_do_programa(self):
+        return f'Nome: {self._nome} | Ano: {self._ano} | Likes: {self._likes}'
+
+    @property
+    def likes(self):
+        self._likes += 1
+
+    def __str__(self):
+        return f'Nome: {self._nome} | Ano: {self._ano} | Likes: {self._likes}'
+
+class Filme(Programa):
     def __init__(self, nome, ano, duracao):
-        self.__nome = nome.title()
-        self.__ano = ano
-        self.__duracao = str(duracao) + ' minutos'
-        self.__likes = 0
+        super().__init__(nome, ano)
+        self._duracao = str(duracao) + ' minutos'
+    
+    def imprime(self):
+        print(f'Nome: {self._nome} | Ano: {self._ano} | Duração: {self._duracao} | Likes: {self._likes}')
 
-    @property
-    def dados_do_filme(self):
-        print(f'Nome: {self.__nome} | Ano: {self.__ano} | Duração: {self.__duracao} | Likes: {self.__likes}')
-
-    @property
-    def likes(self):
-        self.__likes += 1
-
-class Serie: 
-
+class Serie(Programa): 
     def __init__(self, nome, ano, temporadas):
-        self.__nome = nome.title()
-        self.__ano = ano
-        self.__temporadas = str(temporadas) + ' temporadas'
-        self.__likes = 0
+        super().__init__(nome, ano)
+        self._temporadas = str(temporadas) + ' temporadas'
+
+    def __str__(self):
+        return f'Nome: {self._nome} | Ano: {self._ano} | Temporadas: {self._temporadas} | Likes: {self._likes}'
+
+class Playlist:
+
+    def __init__(self, nome, programas):
+        self._nome = nome
+        self._programas = programas
 
     @property
-    def dados_da_serie(self):
-        print(f'Nome: {self.__nome} | Ano: {self.__ano} | Duração: {self.__temporadas} | Likes: {self.__likes}')
-
-    @dados_da_serie.setter
-    def dados_da_serie(self, values):
-        self.__nome = values[0].title()
-        self.__ano = values[1]
-        self.__temporadas = str(values[2]) + ' temporadas'
-        self.__likes = self.__likes
+    def listagem_da_playlist(self):
+        return self._programas
 
     @property
-    def likes(self):
-        self.__likes += 1
+    def tamanho_da_playlist(self):
+        return len(self._programas)
 
 # CRIAÇÃO DOS OBJETOS:
 
 vingadores = Filme('vingadores - guerra infinita', 2018, 160)
 
 strangerThings = Serie('stranger things', 2016, 4)
+
+tmep = Filme('todo mundo em panico', 2001, 100)
+
+demolidor = Serie('demolidor', 2016, 3)
 
 # MANIPULAÇÃO DOS OBJETOS (LIKES):
 
@@ -53,14 +65,30 @@ vingadores.likes
 vingadores.likes
 vingadores.likes
 
+tmep.likes
+
+demolidor.likes
+demolidor.likes
+demolidor.likes
+
 # EXIBIÇÃO DOS OBJETOS:
 
-vingadores.dados_do_filme
+# vingadores.dados_do_programa
 
-strangerThings.dados_da_serie
+# strangerThings.dados_do_programa
 
 # ALTERAÇÃO DOS OBJETOS:
 
-strangerThings.dados_da_serie = ['vingadores - guerra infinita', '2011', '1']
+# strangerThings.dados_do_programa = ['vingadores - guerra infinita', '2011', '1']
 
-strangerThings.dados_da_serie
+# strangerThings.dados_do_programa
+
+# ARMAZENAMENTO DOS OBJETOS:
+
+filmes_e_series = [vingadores, strangerThings, demolidor, tmep]
+
+playlist_fim_de_semana = Playlist('Fim de semana', filmes_e_series)
+
+for programa in playlist_fim_de_semana.listage:
+    print(programa)
+
