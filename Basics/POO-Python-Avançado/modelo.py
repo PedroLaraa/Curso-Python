@@ -43,7 +43,7 @@ class Playlist:
         return self._programas
 
     @property
-    def tamanho_da_playlist(self):
+    def __len__(self):
         return len(self._programas)
 
 # CRIAÇÃO DOS OBJETOS:
