@@ -9,3 +9,5 @@ print('Método sorted(arr reverse=True):', sorted(idades, reverse=True))
 # Método sorted(arr) aplica-se em um local apenas, não altera a arr original
 
 print(idades)
+
+
