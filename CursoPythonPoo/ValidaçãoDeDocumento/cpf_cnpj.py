@@ -31,7 +31,7 @@ class CnpjValidate:
 
     def format(self):
         mascara = CNPJ()
-        return mascara.mask(self.cnpj)
+        return 'Documento válido: ' + mascara.mask(self.cnpj)
 
 class CpfValidate:
     
@@ -50,4 +50,4 @@ class CpfValidate:
 
     def format(self):
         mascara = CPF()
-        return mascara.mask(self.cpf)
+        return 'Documento válido: ' + mascara.mask(self.cpf)
